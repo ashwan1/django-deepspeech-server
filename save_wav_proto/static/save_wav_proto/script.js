@@ -8,22 +8,18 @@
 	var audioStream = null;
 	var audioData = null;
 	
-	function getAudioStream(){
+	function startRecording(){
 		navigator.mediaDevices.getUserMedia(constraints)
 		.then(function(stream){
 			audioStream = stream;
 			var audioContext = new AudioContext();
 			var source = audioContext.createMediaStreamSource(stream);
 			recorder = audioRecorder.fromSource(source);
+			recorder.record();
 		})
 		.catch(function(err){
 			alert("some error occurred while getting audio stream.");
 		})
-	}
-	
-	function startRecording(){
-		recorder.clear();
-		recorder.record();
 	}
 	
 	function stopRecording(){
@@ -38,6 +34,7 @@
 			mt.src = url;
 			document.body.appendChild(mt);
 		});
+		recorder.clear();
 	}
 	
 	function submitToServer(){

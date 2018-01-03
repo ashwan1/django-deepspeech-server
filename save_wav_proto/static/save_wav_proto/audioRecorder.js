@@ -3,14 +3,14 @@
  */
 (function(window){
 	
-	var AudioRecorderObject(source) {
+	function AudioRecorderObject(source) {
 		var callback;
 		var recording = false;
 		
 		this.context = source.context;
 		this.node = (this.context.createScriptProcessor ||
 				this.context.createJavaScriptNode).call(this.context, 4096, 2, 2);
-		var worker = new Worker('audioRecorderWorker.js');
+		var worker = new Worker('/static/save_wav_proto/audioRecorderWorker.js');
 		
 		worker.onmessage = function(e){
 			var blob = e.data;
@@ -20,7 +20,8 @@
 		worker.postMessage({
 			command: 'init',
 			config: {
-				sampleRate: this.context.sampleRate
+				contextSampleRate: this.context.sampleRate,
+				desiredSampleRate: 16000,
 			}
 		});
 		

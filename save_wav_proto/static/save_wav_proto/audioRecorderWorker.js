@@ -1,12 +1,17 @@
+importScripts('/static/save_wav_proto/resampler.js');
+importScripts('/static/save_wav_proto/WavAudioEncoder.js');
+
 var recLength = 0;
 var recBuffersL = [];
 var bits = 16;
 var sampleRate;
+var encoder;
+//var resampler;
 
 this.onmessage = function(e){
   switch(e.data.command){
     case 'init':
-      sampleRate = e.data.config.sampleRate;
+      init(e.data.config);
       break;
     case 'record':
       record(e.data.buffer);
@@ -20,19 +25,36 @@ this.onmessage = function(e){
   }
 };
 
+function init(config){
+	var contextSampleRate = config.contextSampleRate;
+	sampleRate = config.desiredSampleRate;
+	encoder = new WavAudioEncoder(sampleRate, 1);
+	resampler = new Resampler(contextSampleRate, sampleRate, 1, 4096);
+}
+
 function record(inputBuffer) {
-	recBuffersL.push(inputBuffer[0]);
-	recLength += inputBuffer[0].length;
+	if(typeof resampler !== 'undefined'){		
+		inputBuffer[0] = resampler.resampler(inputBuffer[0]);
+	}
+//	recBuffersL.push(inputBuffer);
+//	recLength += inputBuffer.length;
+	encoder.encode(inputBuffer);
 }
 
 function exportWAV(type) {
-	var bufferL = mergeBuffers(recBuffersL, recLength);
-	var dataview = encodeWAV(bufferL);
-	var audioBlob = new Blob([ dataview ], {
-		type : type
-	});
-
+//	var bufferL = mergeBuffers(recBuffersL, recLength);
+//	var dataview = encodeWAV(bufferL);
+//	var audioBlob = new Blob([ dataview ], {
+//		type : type
+//	});
+	var audioBlob = encoder.finish(type);
 	this.postMessage(audioBlob);
+}
+
+function clear() {
+//	recLength = 0;
+//	recBuffersL = [];
+	encoder.cancel();
 }
 
 function mergeBuffers(recBuffers, recLength) {
@@ -50,6 +72,13 @@ function floatTo16BitPCM(output, offset, input) {
 		var s = Math.max(-1, Math.min(1, input[i]));
 		output.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
 	}
+}
+
+
+function writeString(view, offset, string){
+  for (var i = 0; i < string.length; i++){
+    view.setUint8(offset + i, string.charCodeAt(i));
+  }
 }
 
 function encodeWAV(samples) {
