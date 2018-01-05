@@ -6,7 +6,7 @@ var recBuffersL = [];
 var bits = 16;
 var sampleRate;
 var encoder;
-//var resampler;
+var resampler;
 
 this.onmessage = function(e){
   switch(e.data.command){
