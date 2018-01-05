@@ -28,13 +28,15 @@ N_FEATURES = 26
 # Size of the context window used for producing timesteps in the input vector
 N_CONTEXT = 9
 
+conf = config.ConfigDeepSpeech()
 def stt(audioPath):
     
-    alphabet = config.get_alphabet()
-    lm = config.get_lm()
-    trie = config.get_trie()
+    model = conf.get_config('model')
+    alphabet = conf.get_config('alphabet')
+    lm = conf.get_config('lm')
+    trie = conf.get_config('trie')
     
-    ds = Model(config.get_model(), N_FEATURES, N_CONTEXT, config.get_alphabet(), BEAM_WIDTH)
+    ds = Model(model, N_FEATURES, N_CONTEXT, alphabet, BEAM_WIDTH)
     if lm and trie:
         ds.enableDecoderWithLM(alphabet, lm, trie, LM_WEIGHT, WORD_COUNT_WEIGHT, VALID_WORD_COUNT_WEIGHT)
     

@@ -1,8 +1,8 @@
 {
   "deepspeech": {
-    "model" :"model.pb",
-    "alphabet": "alphabet.txt",
-    "lm": "lm.binary",
-    "trie": "trie"
+    "model" :"/home/ashwanip/Desktop/DeepSpeech/native_client/models/output_graph.pb",
+    "alphabet": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/alphabet.txt",
+    "lm": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/lm.binary",
+    "trie": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/trie"
   }
 }
