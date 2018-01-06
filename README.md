@@ -2,7 +2,7 @@
 This is [Mozilla deepspeech](https://github.com/mozilla/DeepSpeech) server implemented in django. One can record sound in browser and submit it to get corresponding text. This is working prototype, focus is on implementation rather than design of user interface.
 
 ## Acknowledgement
-First of all, thanks to mozilla for such a wonderfull project. Speech to text is revolutionary technology that has huge scope in future and these type of open source efforts will definitely help nurture this tech.
+First of all, thanks to mozilla for such a awesome project. Speech to text is revolutionary technology that has huge scope in future and these type of open source efforts will definitely help nurture this tech.
 I have used [wav-encoder](https://github.com/higuma/wav-audio-encoder-js) to encode recorded sound in wav format and [resampler](https://gist.github.com/frequent/34313277a46d5fb050f94a3769804287) to get 16000 Hz sample rate. Got some of my inspiration from [deepspeech-server](https://github.com/MainRo/deepspeech-server).
 
 ## Installation
