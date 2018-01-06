@@ -30,4 +30,4 @@ Go to your browser and browse to http://127.0.0.1:8000/dsserver.
 - [ ] Real time inference
 
 ## License
-MIT(see [LICENSE](https://github.com/sci472bmt/django-deepspeech-server/blob/master/LICENSE)
+MIT(see [LICENSE](https://github.com/sci472bmt/django-deepspeech-server/blob/master/LICENSE))
