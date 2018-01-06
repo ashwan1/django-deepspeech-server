@@ -3,7 +3,7 @@ This is [Mozilla deepspeech](https://github.com/mozilla/DeepSpeech) server imple
 
 ## Acknowledgement
 First of all, thanks to mozilla for such a wonderfull project. Speech to text is revolutionary technology that has huge scope in future and these type of open source efforts will definitely help nurture this tech.
-I have used [wav-encoder]() to encode recorded sound in wav format and [resampler]() to get 16000 Hz sample rate. Got some of my inspiration from [deepspeech-server](https://github.com/MainRo/deepspeech-server).
+I have used [wav-encoder](https://github.com/higuma/wav-audio-encoder-js) to encode recorded sound in wav format and [resampler](https://gist.github.com/frequent/34313277a46d5fb050f94a3769804287) to get 16000 Hz sample rate. Got some of my inspiration from [deepspeech-server](https://github.com/MainRo/deepspeech-server).
 
 ## Installation
 Download or clone this project. This project uses python3. To run this project you need to first install deepspeech. Depending on your system you can use the CPU package:
