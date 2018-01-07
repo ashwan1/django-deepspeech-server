@@ -28,6 +28,7 @@ Go to your browser and browse to http://127.0.0.1:8000/dsserver.
 ## TODO
 - [ ] Make it web socket based.
 - [ ] Real time inference
+- [ ] Provide Google speech API like response, so that one only has to change websocket address.
 
 ## License
 MIT(see [LICENSE](https://github.com/sci472bmt/django-deepspeech-server/blob/master/LICENSE))
