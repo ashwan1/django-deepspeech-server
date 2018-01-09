@@ -29,16 +29,21 @@ N_FEATURES = 26
 N_CONTEXT = 9
 
 conf = config.ConfigDeepSpeech()
+
+ds = None
+
 def stt(audioPath):
+    global ds
+
+    if ds is None:
+        model = conf.get_config('model')
+        alphabet = conf.get_config('alphabet')
+        lm = conf.get_config('lm')
+        trie = conf.get_config('trie')
     
-    model = conf.get_config('model')
-    alphabet = conf.get_config('alphabet')
-    lm = conf.get_config('lm')
-    trie = conf.get_config('trie')
-    
-    ds = Model(model, N_FEATURES, N_CONTEXT, alphabet, BEAM_WIDTH)
-    if lm and trie:
-        ds.enableDecoderWithLM(alphabet, lm, trie, LM_WEIGHT, WORD_COUNT_WEIGHT, VALID_WORD_COUNT_WEIGHT)
+        ds = Model(model, N_FEATURES, N_CONTEXT, alphabet, BEAM_WIDTH)
+        if lm and trie:
+            ds.enableDecoderWithLM(alphabet, lm, trie, LM_WEIGHT, WORD_COUNT_WEIGHT, VALID_WORD_COUNT_WEIGHT)
     
     fs, audio = wav.read(audioPath)
     text = ds.stt(audio, fs)
