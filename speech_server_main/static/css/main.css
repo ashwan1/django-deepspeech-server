@@ -1,0 +1,20 @@
+.table-nonfluid {
+   width: auto !important;
+}
+
+.table-nonfluid>thead>tr>th {
+   width: 220px;
+}
+
+#prediction-panel, #progress-panel  {
+   display: none;
+}
+
+.progress.active .progress-bar {
+    -webkit-transition: none !important;
+    transition: none !important;
+}
+
+.result_container {
+    margin-top: 10px;
+}

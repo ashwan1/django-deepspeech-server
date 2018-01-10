@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import include, url
 from django.contrib import admin
-from django.urls import path
-from django.urls.conf import include
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('dsserver/', include('speech_server_main.urls')),
+    url(r'^$', RedirectView.as_view(url='/dsserver')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^dsserver/', include('speech_server_main.urls')),
 ]

@@ -32,16 +32,22 @@
 			var mt = document.createElement('audio');
 			mt.controls = true;
 			mt.src = url;
-			document.body.appendChild(mt);
+			$('#player')[0].innerHTML = "";
+			$('#player').append(mt);
 		});
 		recorder.clear();
 	}
 	
 	function submitToServer(){
 		var req = new XMLHttpRequest();
+        $('#progress-panel').show();
+        $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0);
+        $('.progress-bar').animate({
+            width: "100%"
+        }, 1500);
 		req.onload = function(response){
-			var paraid = document.getElementById("result");
-			paraid.innerHTML = response.currentTarget.responseText;
+			$('#result')[0].innerHTML = response.currentTarget.responseText;
+            $('#progress-panel').hide();
 		}
 		req.open("POST", "/dsserver/handleaudio/", true)
 		req.send(audioData);
