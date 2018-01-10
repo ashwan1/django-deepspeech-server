@@ -1,9 +1,25 @@
-{% load static %}
-<script src="{%static 'speech_server_main/script.js'%}" type="text/javascript"></script>
-<script src="{%static 'speech_server_main/audioRecorder.js'%}" type="text/javascript"></script>
+{% extends "speech_server_main/base.html" %}
+{% block content %}
+
+{# Load the tag library #}
+{% load bootstrap3 %}
 <h2>Record your voice and submit</h2>
 
+<div id="player">
+    <audio controls src=""></audio>
+</div>
 <button onclick="startRecording()">Record</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button onclick="stopRecording()">Stop</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button onclick="submitToServer()" id="submitAudio">Submit Audio</button>
-<p id="result"></p><br/>
+
+<div class="result_container"><b>Result:</b> <a id="result"></a></div>
+
+<div id="progress-panel">
+    <div class="progress-container">
+        <div class="progress progress-striped active">
+            <div class="progress-bar progress-bar-success" style="width:0%"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

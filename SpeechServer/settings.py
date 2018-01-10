@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap3',
     'speech_server_main.apps.SpeechServerMain',
     'django.contrib.admin',
     'django.contrib.auth',
