@@ -38,19 +38,19 @@
 		recorder.clear();
 	}
 	
-	function submitToServer(){
-		var req = new XMLHttpRequest();
+    function submitToServer(){
+        var req = new XMLHttpRequest();
         $('#progress-panel').show();
         $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0);
         $('.progress-bar').animate({
             width: "100%"
         }, 1500);
-		req.onload = function(response){
-			$('#result')[0].innerHTML = response.currentTarget.responseText;
+        req.onload = function(response){
+            $('#result')[0].innerHTML = response.currentTarget.responseText;
             $('#progress-panel').hide();
-		}
-		req.open("POST", "/dsserver/handleaudio/", true)
-		req.send(audioData);
-	}
+        }
+        req.open("POST", "/dsserver/handleaudio/", true)
+        req.send(audioData);
+    }
 	
 //})())
