@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['10.210.22.166']
 INSTALLED_APPS = [
     'corsheaders',
     'sslserver',
+    'bootstrap3',
     'speech_server_main.apps.SpeechServerMain',
     'django.contrib.admin',
     'django.contrib.auth',
