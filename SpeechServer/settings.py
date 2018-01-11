@@ -25,12 +25,14 @@ SECRET_KEY = '#-kfa^tjc6@bdpc5)d^yveabzd7_j!$ii5_ish66=cc!o3!bih'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.210.22.166']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
+    'sslserver',
     'speech_server_main.apps.SpeechServerMain',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +52,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8443',
+    '127.0.0.1:8443',
+    '10.210.22.166:8443'
+)
+
+# CORS_URLS_REGEX = r'^/handleaudio/.*$'
 
 ROOT_URLCONF = 'SpeechServer.urls'
 
