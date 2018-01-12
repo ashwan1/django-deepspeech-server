@@ -1,21 +1,21 @@
 //(function(){
-	'use strict'
-	
-	var constraints = {
-			audio : true,
-	};
-	var recorder = null;
-	var audioStream = null;
-	var audioData = null;
-	var audioContext = null;
-	
+    'use strict'
+
+    var constraints = {
+            audio : true,
+    };
+    var recorder = null;
+    var audioStream = null;
+    var audioData = null;
+    var audioContext = null;
+
     function startRecording(){
         navigator.mediaDevices.getUserMedia(constraints)
         .then(function(stream){
             audioStream = stream;
             if(!audioContext){
-		audioContext = new AudioContext();
-	    }
+                audioContext = new AudioContext();
+            }
             var source = audioContext.createMediaStreamSource(stream);
             recorder = audioRecorder.fromSource(source);
             recorder.record();
@@ -64,7 +64,7 @@
         req.send(audioData);
     }
 
-	var openFile = function(event) {
+    var openFile = function(event) {
         var input = event.target;
         var url = URL.createObjectURL(input.files[0]);
         var mt = document.createElement('audio');
