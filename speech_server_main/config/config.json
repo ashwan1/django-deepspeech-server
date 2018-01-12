@@ -3,6 +3,7 @@
     "model" :"/home/ashwanip/Desktop/DeepSpeech/native_client/models/output_graph.pb",
     "alphabet": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/alphabet.txt",
     "lm": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/lm.binary",
-    "trie": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/trie"
+    "trie": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/trie",
+    "audiofiledir": "/home/ashwanip/Desktop/DeepSpeech/native_client/audio/"
   }
 }

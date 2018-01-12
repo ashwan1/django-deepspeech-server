@@ -16,9 +16,9 @@ class ConfigDeepSpeech:
         ds_config = config['deepspeech']
         model = ds_config['model']
         alphabet = ds_config['alphabet']
-        print(alphabet)
         lm = ds_config['lm']
         trie = ds_config['trie']
+        audiofiledir = ds_config['audiofiledir']
         if key == 'model':
             return model
         elif key == 'alphabet':
@@ -27,6 +27,8 @@ class ConfigDeepSpeech:
             return lm
         elif key == 'trie':
             return trie
+        elif key == 'audiofiledir':
+            return audiofiledir
         else:
             raise Exception('Invalid key value.')
         

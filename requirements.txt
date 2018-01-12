@@ -1,2 +1,8 @@
-Django>=2.0.0
+appdirs>=1.4.3
+Django==2.0.1
+django-cors-headers==2.1.0
+django-sslserver==0.20
 django-bootstrap3>=9.1.0
+django-filter>=1.0.2
+djangorestframework>=3.6.2
+Markdown>=2.6.8
