@@ -3,16 +3,34 @@
 
 {# Load the tag library #}
 {% load bootstrap3 %}
-<h2>Record your voice and submit</h2>
+<h2>Deepspeech Server</h2>
+This is Mozilla deepspeech server implemented in django.
+One can record sound in browser or choose an audio file and submit it to get corresponding text.
 
-<div id="player">
-    <audio controls src=""></audio>
+<div class="form-main">
+    <div class="form-group">
+        <label for="player">Record your voice</label>
+        <div id="player">
+            <audio controls src=""></audio>
+        </div>
+        <button onclick="startRecording()" class="btn btn-danger">Record</button>
+        <button onclick="stopRecording()" class="btn btn-info">Stop</button>
+    </div>
+    <div class="form-group">
+        <label for="file">Or choose audio file</label>
+        <input type="file" class="form-control-file" id="file"/>
+    </div>
+    <button onclick="submitToServer()" id="submitAudio"
+            class="btn btn-primary">Submit Audio</button>
 </div>
-<button onclick="startRecording()">Record</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button onclick="stopRecording()">Stop</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button onclick="submitToServer()" id="submitAudio">Submit Audio</button>
+<div class="result_container form-group">
+    <label for="result">Result</label>
+    <textarea class="form-control" id="result" rows="3"></textarea>
+</div>
 
-<div class="result_container"><b>Result:</b> <a id="result"></a></div>
+<div id="error-panel" class="alert" role="alert">
+    <a id="error-message"></a>
+</div>
 
 <div id="progress-panel">
     <div class="progress-container">

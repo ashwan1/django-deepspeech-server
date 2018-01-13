@@ -6,7 +6,7 @@
    width: 220px;
 }
 
-#prediction-panel, #progress-panel  {
+#error-panel, #progress-panel  {
    display: none;
 }
 
@@ -15,6 +15,6 @@
     transition: none !important;
 }
 
-.result_container {
+.result_container, .form-main {
     margin-top: 10px;
 }
