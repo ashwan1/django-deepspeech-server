@@ -1,5 +1,5 @@
 # django-deepspeech-server
-This is [Mozilla deepspeech](https://github.com/mozilla/DeepSpeech) server implemented in django. One can record sound in browser and submit it to get corresponding text. This is working prototype, focus is on implementation rather than design of user interface.
+This is [Mozilla deepspeech](https://github.com/mozilla/DeepSpeech) server implemented in django. One can record sound in browser or upload compatible wav file and submit it to get corresponding text.
 
 ## Acknowledgement
 First of all, thanks to mozilla for such a awesome project. Speech to text is revolutionary technology that has huge scope in future and these type of open source efforts will definitely help nurture this tech.
@@ -17,13 +17,18 @@ Or the GPU package
 Install [django](https://www.djangoproject.com/download/).
 
 ## Configuration
-Enter path for your model, alphabet, lm and trie in speech-server-main/config/config.json file. Make change to **file_name** variable in speech_server_main/views.py, to match some valid path on your system.
+Enter path for your model, alphabet, lm and trie in speech-server-main/config/config.json file. Also make change to **audiofiledir** key in same config.json file, to match some valid path on your system.
 
 Go to directory where manage.py is located and start server:
 
     python3 manage.py runserver
     
 Go to your browser and browse to http://127.0.0.1:8000/dsserver.
+Alternatively, you can use use https server, using below command:
+
+    python3 manage.py runsslserver
+
+Now you can access website over https (https://127.0.0.1:8000).
 
 ## TODO
 - [ ] Make it web socket based.
