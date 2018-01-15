@@ -10,7 +10,6 @@ conf = config.ConfigDeepSpeech()
 def index(request):
     return render(request, 'speech_server_main/index.html')
 
-@csrf_exempt
 def handle_audio(request):
     try:
         data=request.body
@@ -18,7 +17,7 @@ def handle_audio(request):
         file_name = audiofiledir + 'swp_generated_' + datetime.now().strftime('%y-%m-%d_%H%M%S')
         with open(file_name, 'wb') as f:
             f.write(data)
-        
+
         msg = ds.stt(file_name)
     except:
         msg = "failed"

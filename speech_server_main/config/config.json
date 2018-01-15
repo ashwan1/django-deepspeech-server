@@ -1,9 +1,9 @@
 {
   "deepspeech": {
-    "model" :"/home/ashwanip/Desktop/DeepSpeech/native_client/models/output_graph.pb",
-    "alphabet": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/alphabet.txt",
-    "lm": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/lm.binary",
-    "trie": "/home/ashwanip/Desktop/DeepSpeech/native_client/models/trie",
-    "audiofiledir": "/home/ashwanip/Desktop/DeepSpeech/native_client/audio/"
+    "model" :"/media/ashwanip/New Volume1/DeepSpeech/models/output_graph.pb",
+    "alphabet": "/media/ashwanip/New Volume1/DeepSpeech/models/alphabet.txt",
+    "lm": "/media/ashwanip/New Volume1/DeepSpeech/models/lm.binary",
+    "trie": "/media/ashwanip/New Volume1/DeepSpeech/models/trie",
+    "audiofiledir": "/media/ashwanip/New Volume1/DeepSpeech/audio/"
   }
 }

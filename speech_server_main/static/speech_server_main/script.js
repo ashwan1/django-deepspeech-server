@@ -41,6 +41,22 @@
         recorder.clear();
     }
 
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie != '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+              var cookie = cookies[i].trim();
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+
     function submitToServer(){
         if(audioData == null) {
             $('#error-panel').addClass('alert-danger');
@@ -50,18 +66,29 @@
         }
 
         $('#error-panel').hide();
-        var req = new XMLHttpRequest();
         $('#progress-panel').show();
         $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0);
         $('.progress-bar').animate({
             width: "100%"
         }, 1500);
-        req.onload = function(response){
-            $('#result').text(response.currentTarget.responseText);
+        $.ajax({
+          url: "/dsserver/handleaudio/",
+          type: "POST",
+          contentType: 'application/octet-stream',
+          data: audioData,
+          processData: false,
+          headers: {
+            'X-CSRFTOKEN': getCookie('csrftoken')
+          },
+          success: function(response){
+            $('#result').text(response);
             $('#progress-panel').hide();
-        }
-        req.open("POST", "/dsserver/handleaudio/", true)
-        req.send(audioData);
+          },
+          error: function(response){
+            $('#result').text(response.responseText);
+            $('#progress-panel').hide();
+          }
+        });
     }
 
     var openFile = function(event) {
