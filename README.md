@@ -14,7 +14,9 @@ Or the GPU package
 
     pip3 install deepspeech-gpu
     
-Install [django](https://www.djangoproject.com/download/).
+Then run following command to install required dependencies:
+
+    pip3 install -r path/to/requirements.txt
 
 ## Configuration
 Enter path for your model, alphabet, lm and trie in speech-server-main/config/config.json file. Also make change to **audiofiledir** key in same config.json file, to match some valid path on your system.
