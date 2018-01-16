@@ -8,6 +8,7 @@
     var audioStream = null;
     var audioData = null;
     var audioContext = null;
+    var csrftoken = getCookie('csrftoken');
 
     function startRecording(){
         navigator.mediaDevices.getUserMedia(constraints)
@@ -78,7 +79,7 @@
           data: audioData,
           processData: false,
           headers: {
-            'X-CSRFTOKEN': getCookie('csrftoken')
+            'X-CSRFTOKEN': csrftoken
           },
           success: function(response){
             $('#result').text(response);

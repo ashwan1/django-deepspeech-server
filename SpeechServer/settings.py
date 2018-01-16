@@ -60,6 +60,21 @@ CORS_ORIGIN_WHITELIST = (
     '10.210.22.166:8443'
 )
 
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'x-csrf-token',
+    'cip',
+    'isajaxrequest',
+)
+
 # CORS_URLS_REGEX = r'^/handleaudio/.*$'
 
 ROOT_URLCONF = 'SpeechServer.urls'
