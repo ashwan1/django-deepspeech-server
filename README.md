@@ -7,17 +7,11 @@ First of all, thanks to mozilla for such a awesome project. Speech to text is re
 I have used [wav-encoder](https://github.com/higuma/wav-audio-encoder-js) to encode recorded sound in wav format and [resampler](https://gist.github.com/frequent/34313277a46d5fb050f94a3769804287) to get 16000 Hz sample rate. Got some of my inspiration from [deepspeech-server](https://github.com/MainRo/deepspeech-server).
 
 ## Installation
-Download or clone this project. This project uses python3. To run this project you need to first install deepspeech. Depending on your system you can use the CPU package:
-
-    pip3 install deepspeech
-
-Or the GPU package
-
-    pip3 install deepspeech-gpu
+Download or clone this project. This project uses python3. To run this project you need to first install deepspeech. Check out [deepspeech's README.md](https://github.com/mozilla/DeepSpeech/blob/master/README.md) for details on how to install deepspeech on your machine.
     
 Once deepspeech is installed, then run following command to install required dependencies of **django-deepspeech-server:**
 
-    pip3 install -r path/to/requirements.txt
+    pip3 install -r path/to/django-deepspeech-server/requirements.txt
 
 ## Configuration
 Enter path for your model, alphabet, lm and trie in speech-server-main/config/config.json file. Also make change to **audiofiledir** key in same config.json file, to match some valid path on your system.
