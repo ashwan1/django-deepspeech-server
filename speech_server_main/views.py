@@ -16,7 +16,7 @@ def handle_audio(request):
     try:
         data=request.body
         audiofiledir = conf.get_config('audiofiledir')
-        file_name = audiofiledir + 'swp_generated_' + datetime.now().strftime('%y-%m-%d_%H%M%S')
+        file_name = audiofiledir + 'http_generated_' + datetime.now().strftime('%y-%m-%d_%H%M%S')
         with open(file_name, 'wb') as f:
             f.write(data)
 

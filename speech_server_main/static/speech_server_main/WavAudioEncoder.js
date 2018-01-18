@@ -30,7 +30,7 @@
     this.numSamples += len;
   };
 
-  Encoder.prototype.finish = function(mimeType) {
+  Encoder.prototype.finish = function(mimeType, doCleanup) {
     var dataSize = this.numChannels * this.numSamples * 2,
         view = new DataView(new ArrayBuffer(44));
     setString(view, 0, 'RIFF');
@@ -48,7 +48,9 @@
     view.setUint32(40, dataSize, true);
     this.dataViews.unshift(view);
     var blob = new Blob(this.dataViews, { type: 'audio/wav' });
-    this.cleanup();
+    if(doCleanup){
+    	this.cleanup();
+    }
     return blob;
   };
 

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +77,17 @@ CORS_ALLOW_HEADERS = (
 )
 
 # CORS_URLS_REGEX = r'^/handleaudio/.*$'
+
+#settings for channels - Begin
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "ROUTING": "speech_server_main.routing.channel_routing",
+    },
+}
+
+#settings for channels - Begin
 
 ROOT_URLCONF = 'SpeechServer.urls'
 

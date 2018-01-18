@@ -9,38 +9,8 @@
     var audioData = null;
     var audioContext = null;
     var csrftoken = getCookie('csrftoken');
-
-    function startRecording(){
-        navigator.mediaDevices.getUserMedia(constraints)
-        .then(function(stream){
-            audioStream = stream;
-            if(!audioContext){
-                audioContext = new AudioContext();
-            }
-            var source = audioContext.createMediaStreamSource(stream);
-            recorder = audioRecorder.fromSource(source);
-            recorder.record();
-        })
-        .catch(function(err){
-            alert("some error occurred while getting audio stream.");
-        })
-    }
-
-    function stopRecording(){
-        recorder.stop();
-        recorder.exportWAV(function(blob){
-            audioStream.getTracks()[0].stop();
-            audioStream = null;
-            audioData = blob;
-            var url = URL.createObjectURL(blob);
-            var mt = document.createElement('audio');
-            mt.controls = true;
-            mt.src = url;
-            $('#player')[0].innerHTML = "";
-            $('#player').append(mt);
-        });
-        recorder.clear();
-    }
+    var socket = null;
+    var interval;
 
     function getCookie(name) {
       var cookieValue = null;
@@ -57,6 +27,96 @@
       }
       return cookieValue;
   }
+
+    function protocolHandler(){
+    	if($('#ws-radio').prop('checked')){
+    		$('#file').prop('disabled', true);
+    		$('#submitAudio').prop('disabled', true);
+    	} else {
+    		$('#file').prop('disabled', false);
+    		$('#submitAudio').prop('disabled', false);
+    	}
+    }
+
+    function initWebSocket(){
+    	if(!socket){
+    		socket = new WebSocket('ws://127.0.0.1:8000/dsserver/');
+
+    		socket.onopen = function(){
+    			interval = setInterval(function(){
+    				recorder.exportWAV(function(blob){
+    		            audioData = blob;
+    		            if(socket && socket.readyState == WebSocket.OPEN){
+    		            	socket.send(audioData);
+    		            }
+    		        }, false);
+    			}, 2000);
+    		}
+
+    		socket.onmessage = function(res){
+    			$('#result').text(res.data);
+    		}
+
+    		socket.onerror = function(error){
+    			alert('web socket error: ' + error);
+    		}
+
+    		socket.onclose = function(e){
+    			clearInterval(interval);
+    			console.log('websocket closed');
+    		}
+
+    	}
+    }
+
+    function closeWebSocket(){
+    	if(socket && socket.readyState != WebSocket.CLOSED){
+    		socket.close();
+    	}
+		socket = null;
+    }
+
+    function startRecording(){
+        navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(stream){
+        	audioStream = stream;
+            if(!audioContext){
+                audioContext = new AudioContext();
+            }
+            var source = audioContext.createMediaStreamSource(stream);
+            recorder = audioRecorder.fromSource(source);
+            recorder.record();
+            if($('#ws-radio').prop('checked') && !socket){
+            	initWebSocket();
+            } else if(socket){
+            	closeWebSocket();
+            }
+        })
+        .catch(function(err){
+            alert("some error occurred while getting audio stream.");
+        })
+    }
+
+    function stopRecording(){
+    	recorder.stop();
+    	clearInterval(interval);
+        recorder.exportWAV(function(blob){
+            audioStream.getTracks()[0].stop();
+            audioStream = null;
+            audioData = blob;
+            var url = URL.createObjectURL(blob);
+            var mt = document.createElement('audio');
+            mt.controls = true;
+            mt.src = url;
+            $('#player')[0].innerHTML = "";
+            $('#player').append(mt);
+            if(socket && socket.readyState == WebSocket.OPEN){
+            	socket.send(audioData);
+            	closeWebSocket();
+            }
+        }, true);
+        recorder.clear();
+    }
 
     function submitToServer(){
         if(audioData == null) {

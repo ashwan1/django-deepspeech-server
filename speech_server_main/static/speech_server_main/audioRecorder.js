@@ -37,13 +37,14 @@
 			worker.postMessage({ command: 'clear' });
 		};
 		
-		this.exportWAV = function(cb){
+		this.exportWAV = function(cb, doCleanup){
 			callback = cb;
 			if (!callback) throw new Error('Unable to set callback function. Please check if provided.');
 
 			worker.postMessage({
 				command: 'exportWAV',
-				type: 'audio/wav'
+				type: 'audio/wav',
+				doCleanup: doCleanup,
 			});
 		};
 		

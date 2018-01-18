@@ -17,7 +17,7 @@ this.onmessage = function(e){
       record(e.data.buffer);
       break;
     case 'exportWAV':
-      exportWAV(e.data.type);
+      exportWAV(e.data.type, e.data.doCleanup);
       break;
     case 'clear':
       clear();
@@ -39,8 +39,8 @@ function record(inputBuffer) {
 	encoder.encode(inputBuffer);
 }
 
-function exportWAV(type) {
-	var audioBlob = encoder.finish(type);
+function exportWAV(type, doCleanup) {
+	var audioBlob = encoder.finish(type, doCleanup);
 	this.postMessage(audioBlob);
 }
 
