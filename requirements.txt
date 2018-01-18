@@ -6,4 +6,3 @@ django-bootstrap3>=9.1.0
 django-filter>=1.0.2
 djangorestframework>=3.6.2
 channels>=1.1.8
-deepspeech>=0.1.0
