@@ -15,7 +15,7 @@ Or the GPU package
 
     pip3 install deepspeech-gpu
     
-Then run following command to install required dependencies:
+Once deepspeech is installed, then run following command to install required dependencies of **django-deepspeech-server:**
 
     pip3 install -r path/to/requirements.txt
 
