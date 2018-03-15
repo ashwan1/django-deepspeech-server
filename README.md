@@ -29,7 +29,8 @@ Now you can access website over https (https://127.0.0.1:8000).
 
 ## TODO
 - [x] Support for web sockets.
-- [ ] Real time inference
+- [ ] Input file validation.
+- [ ] Real time inference.
 - [ ] Provide Google speech API like response, so that one only has to change websocket address.
 
 ## License
