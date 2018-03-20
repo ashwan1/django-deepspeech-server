@@ -14,7 +14,7 @@ Once deepspeech is installed, then run following command to install required dep
     pip3 install -r path/to/django-deepspeech-server/requirements.txt
 
 ## Configuration
-Enter path for your model, alphabet, lm and trie in speech-server-main/config/config.json file. Also make change to **audiofiledir** key in same config.json file, to match some valid path on your system.
+Enter path for your model, alphabet, lm and trie in speech-server-main/config/config.json file. Also make change to **audiofiledir** key in same config.json file, to match some valid path on your system. You can also limit audio length by setting [**audiofilelength**](https://github.com/ashwan1/django-deepspeech-server/issues/7) to some time in seconds.
 
 Go to directory where manage.py is located and start server:
 
@@ -29,7 +29,7 @@ Now you can access website over https (https://127.0.0.1:8000).
 
 ## TODO
 - [x] Support for web sockets.
-- [ ] Input file validation.
+- [x] Input file validation.
 - [ ] Real time inference.
 - [ ] Provide Google speech API like response, so that one only has to change websocket address.
 
