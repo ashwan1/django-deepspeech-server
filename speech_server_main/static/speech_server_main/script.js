@@ -77,6 +77,7 @@
     }
 
     function startRecording(){
+    	$("#file").val("");
         navigator.mediaDevices.getUserMedia(constraints)
         .then(function(stream){
         	audioStream = stream;
@@ -120,9 +121,7 @@
 
     function submitToServer(){
         if(audioData == null) {
-            $('#error-panel').addClass('alert-danger');
-            $('#error-message').text("There is no audio data here!");
-            $('#error-panel').show();
+            displayError("There is no audio data here!");
             return;
         }
 
@@ -154,6 +153,11 @@
 
     var openFile = function(event) {
         var input = event.target;
+        var isValid = checkValidity(input.files[0]);
+        if(!isValid){
+        	displayError("Only wav file type allowed.");
+        	return;
+        }
         var url = URL.createObjectURL(input.files[0]);
         var mt = document.createElement('audio');
         audioData = input.files[0];
@@ -162,9 +166,23 @@
         $('#player')[0].innerHTML = "";
         $('#player').append(mt);
     };
+    
+    function checkValidity(file){
+    	var isValid = false;
+    	var allowedFileTypes = ['audio/x-wav', 'audio/wav'];
+    	isValid = allowedFileTypes.includes(file.type);
+    	return isValid;
+    }
+    
+    function displayError(errorMsg){
+    	$('#error-panel').addClass('alert-danger');
+        $('#error-message').text(errorMsg);
+        $('#error-panel').show();
+    }
 
     $(window).on('load',function(){
-        $("#file").change(openFile);
+    	$("#file").val("");
+    	$("#file").change(openFile);
     });
 
 //})())
