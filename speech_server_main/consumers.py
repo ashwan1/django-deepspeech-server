@@ -21,7 +21,7 @@ def ws_message(message):
     with open(file_name, 'wb') as fp:
         fp.write(message.content['bytes'])
         fp.flush()
-    msg = ds.stt(file_name)
+    msg = ds.stt(file_name, True)
     message.reply_channel.send({'text':msg})
 
 def ws_disconnect(message):
