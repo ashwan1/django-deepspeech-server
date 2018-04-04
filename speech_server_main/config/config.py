@@ -20,6 +20,7 @@ class ConfigDeepSpeech:
         trie = ds_config['trie']
         audiofiledir = ds_config['audiofiledir']
         audiofilelength = ds_config['audiofilelength']
+        debug = ds_config['debug']
         if key == 'model':
             return model
         elif key == 'alphabet':
@@ -32,6 +33,8 @@ class ConfigDeepSpeech:
             return audiofiledir
         elif key == 'audiofilelength':
             return audiofilelength
+        elif key == 'debug':
+            return debug
         else:
             raise Exception('Invalid key value.')
         

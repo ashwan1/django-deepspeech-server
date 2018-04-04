@@ -78,6 +78,9 @@
 
     function startRecording(){
     	$("#file").val("");
+    	if (navigator.mediaDevices.getUserMedia === undefined) {
+    		displayError("This browser doesn't support getUserMedia.");
+    	}
         navigator.mediaDevices.getUserMedia(constraints)
         .then(function(stream){
         	audioStream = stream;
@@ -94,7 +97,7 @@
             }
         })
         .catch(function(err){
-            alert("some error occurred while getting audio stream.");
+        	displayError("Error occurred while getting audio stream: " + err);
         })
     }
 

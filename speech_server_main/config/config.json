@@ -1,10 +1,11 @@
 {
   "deepspeech": {
-    "model" :"/media/ashwanip/New Volume/DeepSpeech/models/output_graph.pb",
-    "alphabet": "/media/ashwanip/New Volume/DeepSpeech/models/alphabet.txt",
-    "lm": "/media/ashwanip/New Volume/DeepSpeech/models/lm.binary",
-    "trie": "/media/ashwanip/New Volume/DeepSpeech/models/trie",
-    "audiofiledir": "/media/ashwanip/New Volume/DeepSpeech/audio/",
-    "audiofilelength": "10"
+    "model" :"/home/ashwanipandey/deepspeech/model_pretrained/models/output_graph.pb",
+    "alphabet": "/home/ashwanipandey/deepspeech/model_pretrained/models/alphabet.txt",
+    "lm": "/home/ashwanipandey/deepspeech/model_pretrained/models/lm.binary",
+    "trie": "/home/ashwanipandey/deepspeech/model_pretrained/models/trie",
+    "audiofiledir": "/home/ashwanipandey/deepspeech/model_pretrained/audio/",
+    "audiofilelength": "10",
+    "debug": "1"
   }
 }
