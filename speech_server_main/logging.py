@@ -4,10 +4,15 @@ Created on 04-Apr-2018
 @author: ashwani pandey
 '''
 
+import os
+from os import path
 import logging
 from speech_server_main.config import config
 
-logging.basicConfig(filename="./speech_server_main/logs/deepspeech_server.log", format='%(levelname)s %(asctime)s %(message)s')
+if not path.exists("./logs"):
+    os.mkdir("./logs")
+    
+logging.basicConfig(filename="./logs/deepspeech_server.log", format='%(levelname)s %(asctime)s %(message)s')
 def log(message, log_level="warning"):
     
     set_debug = config.ConfigDeepSpeech().get_config("debug")
