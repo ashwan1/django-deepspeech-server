@@ -1,9 +1,3 @@
-'''
-Created on 04-Apr-2018
-
-@author: ashwani pandey
-'''
-
 import os
 from os import path
 import logging
