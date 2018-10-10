@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from deepspeech.model import Model
+from deepspeech import Model
 from speech_server_main.config import config
 
 # These constants control the beam search decoder
@@ -10,12 +10,10 @@ BEAM_WIDTH = 500
 # The alpha hyperparameter of the CTC decoder. Language Model weight
 LM_WEIGHT = 1.75
 
-# The beta hyperparameter of the CTC decoder. Word insertion weight (penalty)
-WORD_COUNT_WEIGHT = 1.00
 
 # Valid word insertion weight. This is used to lessen the word insertion penalty
 # when the inserted word is part of the vocabulary
-VALID_WORD_COUNT_WEIGHT = 1.00
+VALID_WORD_COUNT_WEIGHT = 2.25
 
 
 # These constants are tied to the shape of the graph used (changing them changes
@@ -39,7 +37,7 @@ class SpeechServerMain(AppConfig):
 
     ds = Model(model, N_FEATURES, N_CONTEXT, alphabet, BEAM_WIDTH)
     if lm and trie:
-        ds.enableDecoderWithLM(alphabet, lm, trie, LM_WEIGHT, WORD_COUNT_WEIGHT, VALID_WORD_COUNT_WEIGHT)
+        ds.enableDecoderWithLM(alphabet, lm, trie, LM_WEIGHT, VALID_WORD_COUNT_WEIGHT)
 
     def ready(self):
         print("Deepspeech Server Initialization")
