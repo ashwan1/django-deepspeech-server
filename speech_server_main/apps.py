@@ -8,13 +8,10 @@ from speech_server_main.config import config
 BEAM_WIDTH = 500
 
 # The alpha hyperparameter of the CTC decoder. Language Model weight
-LM_WEIGHT = 1.75
+LM_ALPHA = 0.75
 
-
-# Valid word insertion weight. This is used to lessen the word insertion penalty
-# when the inserted word is part of the vocabulary
-VALID_WORD_COUNT_WEIGHT = 2.25
-
+# The beta hyperparameter of the CTC decoder. Word insertion bonus.
+LM_BETA = 1.85
 
 # These constants are tied to the shape of the graph used (changing them changes
 # the geometry of the first layer), so make sure you use the same constants that
@@ -37,7 +34,7 @@ class SpeechServerMain(AppConfig):
 
     ds = Model(model, N_FEATURES, N_CONTEXT, alphabet, BEAM_WIDTH)
     if lm and trie:
-        ds.enableDecoderWithLM(alphabet, lm, trie, LM_WEIGHT, VALID_WORD_COUNT_WEIGHT)
+        ds.enableDecoderWithLM(alphabet, lm, trie, LM_ALPHA, LM_BETA)
 
     def ready(self):
         print("Deepspeech Server Initialization")
