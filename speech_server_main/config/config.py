@@ -15,7 +15,6 @@ class ConfigDeepSpeech:
             
         ds_config = config['deepspeech']
         model = ds_config['model']
-        alphabet = ds_config['alphabet']
         lm = ds_config['lm']
         trie = ds_config['trie']
         audiofiledir = ds_config['audiofiledir']
@@ -23,8 +22,6 @@ class ConfigDeepSpeech:
         debug = ds_config['debug']
         if key == 'model':
             return model
-        elif key == 'alphabet':
-            return alphabet
         elif key == 'lm':
             return lm
         elif key == 'trie':

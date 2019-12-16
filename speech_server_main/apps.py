@@ -18,23 +18,22 @@ LM_BETA = 1.85
 # were used during training
 
 # Number of MFCC features to use
-N_FEATURES = 26
+# N_FEATURES = 26
 
 # Size of the context window used for producing timesteps in the input vector
-N_CONTEXT = 9
+# N_CONTEXT = 9
 
 
 class SpeechServerMain(AppConfig):
     name = 'speech_server_main'
     conf = config.ConfigDeepSpeech()
     model = conf.get_config('model')
-    alphabet = conf.get_config('alphabet')
     lm = conf.get_config('lm')
     trie = conf.get_config('trie')
 
-    ds = Model(model, N_FEATURES, N_CONTEXT, alphabet, BEAM_WIDTH)
+    ds = Model(model, BEAM_WIDTH)
     if lm and trie:
-        ds.enableDecoderWithLM(alphabet, lm, trie, LM_ALPHA, LM_BETA)
+        ds.enableDecoderWithLM(lm, trie, LM_ALPHA, LM_BETA)
 
     def ready(self):
         print("Deepspeech Server Initialization")
