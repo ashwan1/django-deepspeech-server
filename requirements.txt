@@ -1,6 +1,6 @@
 scipy>=1.1.0
 appdirs>=1.4.3
-Django==2.1.2
+Django==2.2.24
 django-cors-headers==2.1.0
 django-sslserver==0.20
 django-bootstrap3>=9.1.0
